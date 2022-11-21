@@ -3,8 +3,8 @@
 #include <string>
 #include <iostream>
 #include <GLFW/glfw3.h>
-#include <glm/glm.hpp>
-#include <glm/gtc/matrix_transform.hpp>
+#include <math.h>
+
 
 
 #pragma comment(lib, "OpenGL32")
@@ -17,18 +17,17 @@ chrono::duration<double> renderDuration;
 GLFWwindow* window;
 bool isFirstFrame = true;
 
-
 struct Vertex
 {
-    glm::vec3 pos;
+    vec3 pos;
     float r, g, b, a;
 };
 
 struct Transform
 {
-    glm::mat3 translate;
-    glm::mat3 scale;
-    glm::mat3 rotation;
+    mat3 translate;
+    mat3 scale;
+    mat3 rotation;
 };
 
 
@@ -41,10 +40,10 @@ Transform transform;  //world 행렬이 될 transform
 
 //<문제>////////전역변수 쓰는곳////////////////////////////////////////////////////////////
 
-float rot;
-float sca;
-float tran;
-bool hard;
+//float rot;
+//float sca;
+//float tran;
+//bool hard;
 
  //////////////////////////////////////////////////////////////////////////////////////////
 
@@ -119,17 +118,17 @@ void Init()
 
 
     //트랜스폼 초기화 (기본형 제공)
-    transform.translate = glm::mat3(
+    transform.translate = mat3(
         1, 0, 0,
         0, 1, 0,
         0, 0, 1
     );
-    transform.rotation = glm::mat3(
-        glm::cos(glm::radians(0.0f)), -glm::sin(glm::radians(0.0f)), 0,
-        glm::sin(glm::radians(0.0f)), glm::cos(glm::radians(0.0f)), 0,
+    transform.rotation = mat3(
+        cos(radians(0.0f)), -sin(radians(0.0f)), 0,
+        sin(radians(0.0f)), cos(radians(0.0f)), 0,
         0, 0, 1
     );
-    transform.scale = glm::mat3(
+    transform.scale = mat3(
         1, 0, 0,
         0, 1, 0,
         0, 0, 1
@@ -154,18 +153,18 @@ void Update()
         
         //Update로직
         //<문제>//////////////////////////////////////////////////////////////////////////////////
-        transform.translate = glm::mat3(
+        /*transform.translate = glm::mat3(
             1, 0, 0,
             0, 1, 0,
             tran,0,1 
-        );
+        );*/
         
 
         //1. translate 를 프레임당 오른쪽으로 0.001씩 누적시켜서 물체를 이동해보세요.
-        transform.rotation = glm::mat3(
+        /*transform.rotation = glm::mat3(
             glm::cos(glm::radians(rot)), -glm::sin(glm::radians(rot)), 0,
             glm::sin(glm::radians(rot)), glm::cos(glm::radians(rot)), 0,
-            0, 0, 1
+            0, 0, 1*/
         );
         
         //2. Rotation 을 프레임당 1도씩 누적시켜서 물체를 회전시켜보세요.
